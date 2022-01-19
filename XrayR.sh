@@ -368,8 +368,8 @@ show_XrayR_version() {
 show_usage() {
     echo "XrayR 管理脚本使用方法: "
     echo "------------------------------------------"
-    echo "XrayR              - 显示管理菜单 (功能更多)"
-    echo "XrayR start        - 启动 XrayR"
+    echo "XrayR              - Hiển thị menu quản trị (nhiều chức năng hơn) "
+    echo "XrayR start        - Khởi động XrayR "
     echo "XrayR stop         - 停止 XrayR"
     echo "XrayR restart      - 重启 XrayR"
     echo "XrayR status       - 查看 XrayR 状态"
@@ -379,20 +379,20 @@ show_usage() {
     echo "XrayR update       - 更新 XrayR"
     echo "XrayR update x.x.x - 更新 XrayR 指定版本"
     echo "XrayR install      - 安装 XrayR"
-    echo "XrayR uninstall    - 卸载 XrayR"
+    echo "XrayR uninstall    - Gỡ cài đặt XrayR "
     echo "XrayR version      - 查看 XrayR 版本"
     echo "------------------------------------------"
 }
 
 show_menu() {
     echo -e "
-  ${green}XrayR 后端管理脚本，${plain}${red}不适用于docker${plain}
+    Các tập lệnh quản lý phụ trợ XrayR，không hoạt động với docker${plain}
 --- https://github.com/XrayR-project/XrayR ---
-  ${green}0.${plain} 修改配置
+    0. Thay đổi cài đặt
 ————————————————
-  ${green}1.${plain} 安装 XrayR
-  ${green}2.${plain} 更新 XrayR
-  ${green}3.${plain} 卸载 XrayR
+    1. Cài đặt XrayR
+    2.${plain} Cập nhật XrayR
+    3.${plain} 卸载 XrayR
 ————————————————
   ${green}4.${plain} 启动 XrayR
   ${green}5.${plain} 停止 XrayR
@@ -409,7 +409,7 @@ show_menu() {
  "
  #后续更新可加入上方字符串中
     show_status
-    echo && read -p "请输入选择 [0-13]: " num
+    echo && read -p "  Vui lòng nhập một lựa chọn [0-13]: " num
 
     case "${num}" in
         0) config
@@ -440,7 +440,7 @@ show_menu() {
         ;;
         13) update_shell
         ;;
-        *) echo -e "${red}请输入正确的数字 [0-12]${plain}"
+        *) echo -e "  Vui lòng nhập số chính xác [0-12]${plain}"
         ;;
     esac
 }
