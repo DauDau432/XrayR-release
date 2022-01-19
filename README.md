@@ -6,11 +6,9 @@ Một khung công tác back-end dựa trên Xray, hỗ trợ các giao thức V2
 Tìm mã nguồn tại đây: [XrayR-project/XrayR](https://github.com/XrayR-project/XrayR)
 
 # Hướng dẫn chi tiết
-
 [Hướng dẫn](https://crackair.gitbook.io/xrayr-project/)
 
-# cài đặt 
-
+# Cài đặt 
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/DauDau432/XrayR-release/main/install.sh)
 ```
