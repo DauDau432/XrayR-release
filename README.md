@@ -12,3 +12,17 @@ Tìm mã nguồn tại đây: [XrayR-project/XrayR](https://github.com/XrayR-pro
 ```
 bash <(curl -Ls https://raw.githubusercontent.com/DauDau432/XrayR-release/main/install.sh)
 ```
+## Cấu hình xrayr
+1: dòng `pannel` : ví dụ `V2board`, `SSpanel`,... (chữ đầu viết hoa)
+
+2: dòng `Api` : ví dụ `https://domain.com/` (thêm / đằng sau)
+
+3: dòng `key` : key của web
+
+4: dòng `cert mode` : `http`
+
+5: dòng `cert domain` : `IP` của server muốn đưa lên web
+
+Dòng nào có ngoặc kép nhớ để ý viết trong ngoặc kép
+
+Cấu hình xong nhớ khởi động lại xrayr nhé.
