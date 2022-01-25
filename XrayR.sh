@@ -367,7 +367,7 @@ show_XrayR_version() {
 
 show_usage() {
     echo ''
-    echo "  ${green}--- [Đậu Đậu việt hóa] ---${plain}"
+    echo "------------[Đậu Đậu việt hóa]------------"
     echo "  Cách sử dụng tập lệnh quản lý XrayR: "
     echo "------------------------------------------"
     echo "  XrayR              - Hiển thị menu quản trị (nhiều chức năng hơn) "
