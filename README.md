@@ -13,6 +13,10 @@ Tìm mã nguồn tại đây: [XrayR-project/XrayR](https://github.com/XrayR-pro
 bash <(curl -Ls https://raw.githubusercontent.com/DauDau432/XrayR-release/main/install.sh)
 ```
 ## Cấu hình xrayr
+Vào thư mục này để cấu hình
+```
+vi /etc/XrayR/config.yml
+```
 1: dòng `pannel` : ví dụ `V2board`, `SSpanel`,... (chữ đầu viết hoa)
 
 2: dòng `Api` : ví dụ `https://domain.com/` (thêm / đằng sau)
