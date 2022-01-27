@@ -26,6 +26,10 @@ vi /etc/XrayR/config.yml
 4: dòng `cert mode` : `http`
 
 5: dòng `cert domain` : `IP` của server muốn đưa lên web
+Thêm dòng này trên đầu `listenip` để fix lỗi zalo 
+```
+DisableSniffing: true
+```
 
 Dòng nào có ngoặc kép nhớ để ý viết trong ngoặc kép
 
