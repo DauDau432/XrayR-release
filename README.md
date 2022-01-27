@@ -29,11 +29,11 @@ vi /etc/XrayR/config.yml
 
 Thêm dòng `DisableSniffing: true` giữa 2 dòng `ControllerConfig:` và `ListenIP: 0.0.0.0` để fix lỗi zalo 
 ```
-      RuleListPath: # /etc/XrayR/rulelist Đường dẫn đến tệp danh sách quy tắc cục bộ
+      RuleListPath:           # /etc/XrayR/rulelist Đường dẫn đến tệp danh sách quy tắc cục bộ
     ControllerConfig:
-      DisableSniffing: true # Tắt sniffing để fix lỗi zalo 
-      ListenIP: 0.0.0.0 # Địa chỉ IP bạn muốn nghe
-      SendIP: 0.0.0.0 # Địa chỉ IP bạn muốn gửi gói
+      DisableSniffing: true   # Tắt sniffing để fix lỗi zalo 
+      ListenIP: 0.0.0.0       # Địa chỉ IP bạn muốn nghe
+      SendIP: 0.0.0.0         # Địa chỉ IP bạn muốn gửi gói
 ```
 Nếu bị lỗi xrayr không chạy thì bỏ dòng `DisableSniffing: true` đi nhé 
 
