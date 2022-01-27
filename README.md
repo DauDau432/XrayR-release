@@ -33,6 +33,7 @@ Thêm dòng `DisableSniffing: true` giữa 2 dòng `ControllerConfig:` và `List
       DisableSniffing: true 
       ListenIP: 0.0.0.0    
 ```
+Nếu bị lỗi xrayr không chạy thì bỏ dòng `DisableSniffing: true` đi nhé 
 
 Dòng nào có ngoặc kép nhớ để ý viết trong ngoặc kép
 
