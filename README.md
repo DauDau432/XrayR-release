@@ -17,15 +17,15 @@ Vào thư mục này để cấu hình
 ```
 vi /etc/XrayR/config.yml
 ```
-1: dòng `pannel` : ví dụ `V2board`, `SSpanel`,... (chữ đầu viết hoa)
+1: dòng `PanelType` : ví dụ `V2board`, `SSpanel`,... (chữ đầu viết hoa)
 
-2: dòng `Api` : ví dụ `https://domain.com/` (thêm / đằng sau)
+2: dòng `ApiHost` : ví dụ `https://domain.com/` (thêm / đằng sau)
 
-3: dòng `key` : key của web
+3: dòng `ApiKey` : key của web
 
-4: dòng `cert mode` : `http`
+4: dòng `certmode` : `http`
 
-5: dòng `cert domain` : `IP` của server muốn đưa lên web
+5: dòng `certdomain` : `IP` của server muốn đưa lên web
 
 Thêm dòng `DisableSniffing: true` giữa 2 dòng `ControllerConfig:` và `ListenIP: 0.0.0.0` để fix lỗi zalo 
 ```
