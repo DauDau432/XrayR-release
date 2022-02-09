@@ -19,7 +19,7 @@ vi /etc/XrayR/config.yml
 ```
 1: dòng `PanelType` : ví dụ `V2board`, `SSpanel`,... (chữ đầu viết hoa)
 
-2: dòng `ApiHost` : ví dụ `https://domain.com/` (thêm / đằng sau)
+2: dòng `ApiHost` : Link web ví dụ `https://domain.com/` (thêm / đằng sau)
 
 3: dòng `ApiKey` : key của web
 
