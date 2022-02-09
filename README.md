@@ -23,7 +23,7 @@ vi /etc/XrayR/config.yml
 
 3: dòng `ApiKey` : key của web
 
-4: dòng `NodeID` : `ID` sv
+4: dòng `NodeID` : `ID` server 
 
 5: dòng `certdomain` : `IP` của server muốn đưa lên web
 
