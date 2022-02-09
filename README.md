@@ -23,9 +23,7 @@ vi /etc/XrayR/config.yml
 
 3: dòng `ApiKey` : key của web
 
-4: dòng `certmode` : `http`
-
-5: dòng `certdomain` : `IP` của server muốn đưa lên web
+4: dòng `certdomain` : `IP` của server muốn đưa lên web
 
 Thêm dòng `DisableSniffing: true` giữa 2 dòng `ControllerConfig:` và `ListenIP: 0.0.0.0` để fix lỗi zalo 
 ```
