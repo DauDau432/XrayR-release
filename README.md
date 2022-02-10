@@ -17,6 +17,8 @@ Vào thư mục này để cấu hình
 ```
 vi /etc/XrayR/config.yml
 ```
+Hoặc gọi xrayr rồi bấm phím `0`
+
 1: dòng `PanelType` : Tên kiểu web (ví dụ `V2board`, `SSpanel`,... chữ đầu viết hoa)
 
 2: dòng `ApiHost` : Địa chỉ web muốn liên kết (ví dụ `https://domain.com/`)
