@@ -21,7 +21,7 @@ vi /etc/XrayR/config.yml
 
 2: dòng `ApiHost` : Địa chỉ web muốn liên kết (ví dụ `https://domain.com/`)
 
-3: dòng `ApiKey` : key của web (lấy trên web admin / /cấu hình hệ thống / máy chủ `chìa khóa giao tiếp`)
+3: dòng `ApiKey` : key của web (lấy trên web admin / cấu hình hệ thống / máy chủ `chìa khóa giao tiếp`)
 
 4: dòng `NodeID` : `ID` server (lấy trên web admin / Quản lý nút / tên `ID nút`)
 
