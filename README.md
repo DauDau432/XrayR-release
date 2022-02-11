@@ -13,9 +13,12 @@ Tìm mã nguồn tại: [XrayR-project/XrayR](https://github.com/XrayR-project/X
 bash <(curl -Ls https://raw.githubusercontent.com/DauDau432/XrayR-release/main/install.sh)
 ```
 ## Cấu hình xrayr
-Vào thư mục này để cấu hình
+Sử dụng `nano` hoặc `vi` để vào thư mục để cấu hình
 ```
 vi /etc/XrayR/config.yml
+```
+```
+nano /etc/XrayR/config.yml
 ```
 Hoặc gọi xrayr rồi bấm phím `0`
 
