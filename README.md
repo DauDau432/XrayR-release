@@ -42,3 +42,5 @@ Nếu bị lỗi xrayr không chạy thì bỏ dòng `DisableSniffing: true` đi
 Dòng nào có ngoặc kép nhớ để ý viết trong ngoặc kép
 
 Cấu hình xong nhớ khởi động lại xrayr nhé.
+
+Nên sử dụng VPS sạch để cài đặt tránh lỗi vặt 
