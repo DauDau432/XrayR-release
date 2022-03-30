@@ -3,6 +3,6 @@ services:
   xrayr: 
     image: crackair/xrayr:latest
     volumes:
-      - ./config:/etc/XrayR/ # 映射配置文件夹
+      - ./config:/etc/XrayR/ # thư mục cấu hình bản đồ
     restart: always
     network_mode: host
