@@ -107,26 +107,26 @@ install_XrayR() {
 
     mkdir /usr/local/XrayR/ -p
 	cd /usr/local/XrayR/
-
+    
     if  [ $# == 0 ] ;then
-        last_version=$(curl -Ls "https://api.github.com/repos/XrayR-project/XrayR/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
+        last_version=$(curl -Ls "https://api.github.com/repos/AikoCute/XrayR-release/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$last_version" ]]; then
-            echo -e "  Không phát hiện được phiên bản XrayR, có thể đã vượt quá giới hạn Github API, vui lòng thử lại sau hoặc chỉ định phiên bản XrayR để cài đặt $ theo cách thủ công{plain}"
+            echo -e "  Phát hiện phiên bản XrayR không thành công, có thể vượt quá giới hạn GIthub API, vui lòng thử lại sau hoặc chỉ định cài đặt phiên bản XrayR theo cách thủ công${plain}"
             exit 1
         fi
-        echo -e "  Đã phát hiện phiên bản mới nhất của XrayR：${last_version}，bắt đầu cài đặt"
-        wget -N --no-check-certificate -O /usr/local/XrayR/XrayR-linux.zip https://github.com/XrayR-project/XrayR/releases/download/${last_version}/XrayR-linux-${arch}.zip
+        echo -e "  Phiên bản mới nhất của XrayR đã được phát hiện：${last_version}，Bắt đầu cài đặt"
+        wget -N --no-check-certificate -O /usr/local/XrayR/XrayR-linux.zip https://github.com/AikoCute/XrayR-release/releases/download/${last_version}/XrayR-linux-${arch}.zip
         if [[ $? -ne 0 ]]; then
-            echo -e "  Không tải xuống được XrayR, hãy đảm bảo máy chủ của bạn có thể tải xuống tệp Github ${plain}"
+            echo -e "  Tải xuống XrayR thất bại, hãy chắc chắn rằng máy chủ của bạn có thể tải về các tập tin Github${plain}"
             exit 1
         fi
     else
         last_version=$1
-        url="https://github.com/XrayR-project/XrayR/releases/download/${last_version}/XrayR-linux-${arch}.zip"
+        url="https://github.com/AikoCute/XrayR-release/releases/download/${last_version}/XrayR-linux-${arch}.zip"
         echo -e "  Bắt đầu cài đặt XrayR v$1"
         wget -N --no-check-certificate -O /usr/local/XrayR/XrayR-linux.zip ${url}
         if [[ $? -ne 0 ]]; then
-            echo -e "  Không tải xuống được XrayR v $ 1, hãy đảm bảo rằng phiên bản này tồn tại ${plain}"
+            echo -e "  Tải xuống XrayR v$1 Thất bại, hãy chắc chắn rằng phiên bản này tồn tại${plain}"
             exit 1
         fi
     fi
@@ -136,20 +136,20 @@ install_XrayR() {
     chmod +x XrayR
     mkdir /etc/XrayR/ -p
     rm /etc/systemd/system/XrayR.service -f
-    file="https://github.com/XrayR-project/XrayR-release/raw/master/XrayR.service"
+    file="https://raw.githubusercontent.com/AikoCute/XrayR-release/master/XrayR.service"
     wget -N --no-check-certificate -O /etc/systemd/system/XrayR.service ${file}
     #cp -f XrayR.service /etc/systemd/system/
     systemctl daemon-reload
     systemctl stop XrayR
     systemctl enable XrayR
-    echo -e "  XrayR ${last_version}${plain} Quá trình cài đặt hoàn tất, nó đã được thiết lập để bắt đầu tự động"
+    echo -e "  XrayR ${last_version} Quá trình cài đặt hoàn tất, nó đã được thiết lập để bắt đầu tự động"
     cp geoip.dat /etc/XrayR/
-    cp geosite.dat /etc/XrayR/ 
+    cp geosite.dat /etc/XrayR/
 
     if [[ ! -f /etc/XrayR/config.yml ]]; then
         cp config.yml /etc/XrayR/
         echo -e ""
-        echo -e "  Cài đặt mới, vui lòng tham khảo hướng dẫn trước：https://github.com/XrayR-project/XrayR，Định cấu hình nội dung cần thiết"
+        echo -e "  Cài đặt mới, vui lòng tham khảo hướng dẫn trước：https://github.com/DauDau432/XrayR-release，Định cấu hình nội dung cần thiết"
     else
         systemctl start XrayR
         sleep 2
