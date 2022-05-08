@@ -364,7 +364,7 @@ show_XrayR_version() {
         before_show_menu
     fi
 }
-
+clear
 show_usage() {
     echo ''
     echo "------------[Đậu Đậu việt hóa]------------"
@@ -385,7 +385,7 @@ show_usage() {
     echo "  XrayR version      - Xem các phiên bản XrayR"
     echo "------------------------------------------"
 }
-
+clear
 show_menu() {
     echo -e "
     Các tập lệnh quản lý phụ trợ XrayR，không hoạt động với docker${plain}
