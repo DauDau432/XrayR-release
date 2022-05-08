@@ -364,8 +364,9 @@ show_XrayR_version() {
         before_show_menu
     fi
 }
-clear
+
 show_usage() {
+    clear
     echo ''
     echo "------------[Đậu Đậu việt hóa]------------"
     echo "  Cách sử dụng tập lệnh quản lý XrayR: "
@@ -385,8 +386,10 @@ show_usage() {
     echo "  XrayR version      - Xem các phiên bản XrayR"
     echo "------------------------------------------"
 }
-clear
+
 show_menu() {
+    clear
+    echo -e ""
     echo -e "
     Các tập lệnh quản lý phụ trợ XrayR，không hoạt động với docker${plain}
     ${green}--- [Đậu Đậu việt hóa] ---${plain}
