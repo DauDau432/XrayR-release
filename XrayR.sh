@@ -99,6 +99,7 @@ install() {
 
 update() {
     if [[ $# == 0 ]]; then
+        echo ""
         echo && echo -n -e "  Nhập phiên bản được chỉ định (phiên bản mới nhất mặc định): " && read version
     else
         version=$2
@@ -113,6 +114,7 @@ update() {
 #    fi
     bash <(curl -Ls https://raw.githubusercontent.com/DauDau432/XrayR-release/main/install.sh) $version
     if [[ $? == 0 ]]; then
+        echo ""
         echo -e "  Cập nhật hoàn tất, XrayR đã được khởi động lại tự động, vui lòng sử dụng XrayR log để xem nhật ký đang chạy ${plain}"
         exit
     fi
@@ -179,8 +181,10 @@ start() {
         sleep 2
         check_status
         if [[ $? == 0 ]]; then
+            echo ""
             echo -e "  XrayR đã khởi động thành công, vui lòng sử dụng XrayR log để xem nhật ký đang chạy${plain}"
         else
+            echo ""
             echo -e "  XrayR có thể không khởi động được, vui lòng sử dụng XrayR log để xem thông tin nhật ký sau này${plain}"
         fi
     fi
@@ -195,8 +199,10 @@ stop() {
     sleep 2
     check_status
     if [[ $? == 1 ]]; then
+        echo -e ""
         echo -e "  XrayR đã dừng thành công ${plain}"
     else
+        echo -e ""
         echo -e "  XrayR không dừng được, có thể do thời gian dừng vượt quá hai giây, vui lòng kiểm tra thông tin nhật ký sau${plain}"
     fi
 
@@ -210,8 +216,10 @@ restart() {
     sleep 2
     check_status
     if [[ $? == 0 ]]; then
+        echo ""
         echo -e "  XrayR đã khởi động lại thành công, vui lòng sử dụng XrayR log để xem nhật ký đang chạy${plain}"
     else
+        echo ""
         echo -e "  XrayR có thể không khởi động được, vui lòng sử dụng XrayR log để xem thông tin nhật ký sau này${plain}"
     fi
     if [[ $# == 0 ]]; then
@@ -229,8 +237,10 @@ status() {
 enable() {
     systemctl enable XrayR
     if [[ $? == 0 ]]; then
+        echo ""
         echo -e "  XrayR được thiết lập để khởi động thành công${plain}"
     else
+        echo ""
         echo -e "  Thiết lập XrayR không thể tự động khởi động khi khởi động${plain}"
     fi
 
@@ -242,8 +252,10 @@ enable() {
 disable() {
     systemctl disable XrayR
     if [[ $? == 0 ]]; then
+        echo ""
         echo -e "  XrayR đã hủy khởi động tự động khởi động thành công${plain}"
     else
+        echo ""
         echo -e "  XrayR không thể hủy tự động khởi động khởi động${plain}"
     fi
 
