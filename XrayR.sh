@@ -277,6 +277,8 @@ update_shell() {
         before_show_menu
     else
         chmod +x /usr/bin/XrayR
+        clear
+        echo -e ""
         echo -e "  Tập lệnh nâng cấp thành công, vui lòng chạy lại tập lệnh ${plain}" && exit 0
     fi
 }
@@ -364,10 +366,9 @@ show_XrayR_version() {
         before_show_menu
     fi
 }
-
+clear
 show_usage() {
-    clear
-    echo ''
+    echo ""
     echo "------------[Đậu Đậu việt hóa]------------"
     echo "  Cách sử dụng tập lệnh quản lý XrayR: "
     echo "------------------------------------------"
@@ -386,9 +387,8 @@ show_usage() {
     echo "  XrayR version      - Xem các phiên bản XrayR"
     echo "------------------------------------------"
 }
-
+clear
 show_menu() {
-    clear
     echo -e ""
     echo -e "
     Các tập lệnh quản lý phụ trợ XrayR，không hoạt động với docker${plain}
