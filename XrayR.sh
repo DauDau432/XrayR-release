@@ -41,14 +41,17 @@ fi
 
 if [[ x"${release}" == x"centos" ]]; then
     if [[ ${os_version} -le 6 ]]; then
+        echo -e ""
         echo -e "  Vui lòng sử dụng CentOS 7 trở lên！${plain}\n" && exit 1
     fi
 elif [[ x"${release}" == x"ubuntu" ]]; then
     if [[ ${os_version} -lt 16 ]]; then
+        echo -e ""
         echo -e "  Vui lòng sử dụng Ubuntu 16 trở lên！${plain}\n" && exit 1
     fi
 elif [[ x"${release}" == x"debian" ]]; then
     if [[ ${os_version} -lt 8 ]]; then
+        echo -e ""
         echo -e "  Vui lòng sử dụng Debian 8 trở lên！${plain}\n" && exit 1
     fi
 fi
@@ -277,7 +280,6 @@ update_shell() {
         before_show_menu
     else
         chmod +x /usr/bin/XrayR
-        clear
         echo -e ""
         echo -e "  Tập lệnh nâng cấp thành công, vui lòng chạy lại tập lệnh ${plain}" && exit 0
     fi
@@ -359,6 +361,7 @@ show_enable_status() {
 }
 
 show_XrayR_version() {
+    echo -e ""
     echo -n "  Phiên bản XrayR："
     /usr/local/XrayR/XrayR -version
     echo ""
