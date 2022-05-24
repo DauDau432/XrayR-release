@@ -137,7 +137,7 @@ install_XrayR() {
     chmod +x XrayR
     mkdir /etc/XrayR/ -p
     rm /etc/systemd/system/XrayR.service -f
-    file="https://raw.githubusercontent.com/AikoCute/XrayR/master/XrayR.service"
+    file="https://raw.githubusercontent.com/AikoCute/XrayR-release/master/XrayR.service"
     wget -N --no-check-certificate -O /etc/systemd/system/XrayR.service ${file}
     #cp -f XrayR.service /etc/systemd/system/
     systemctl daemon-reload
