@@ -1,4 +1,4 @@
-# XrayR version 1.1.10 (thư viện XrayR By AikoCuteHotMe) full việt hóa Một khung phụ trợ Xray có thể dễ dàng hỗ trợ nhiều bảng.
+# XrayR version 1.0.2 (thư viện XrayR By AikoCuteHotMe) full việt hóa Một khung phụ trợ Xray có thể dễ dàng hỗ trợ nhiều bảng.
 
 Một khung công tác back-end dựa trên Xray, hỗ trợ các giao thức V2ay, Trojan, Shadowsocks, cực kỳ dễ dàng mở rộng và hỗ trợ kết nối nhiều bảng điều khiển
 
