@@ -8,7 +8,7 @@ plain='\033[0m'
 version="v1.0.0"
 
 # check root
-[[ $EUID -ne 0 ]] && echo -e "  lỗi: Tập lệnh này phải được chạy với tư cách người dùng gốc！\n" && exit 1
+[[ $EUID -ne 0 ]] && echo -e "  lỗi: Tập lệnh này phải được chạy với quyền root \n" && exit 1
 
 # check os
 if [[ -f /etc/redhat-release ]]; then
@@ -28,6 +28,7 @@ elif cat /proc/version | grep -Eqi "centos|red hat|redhat"; then
 else
     echo ""
     echo -e "  Phiên bản hệ thống không được phát hiện, vui lòng liên hệ với tác giả kịch bản！${plain}\n" && exit 1
+    echo ""
 fi
 
 os_version=""
@@ -105,14 +106,6 @@ update() {
     else
         version=$2
     fi
-#    confirm "本功能会强制重装当前最新版，数据不会丢失，是否继续?" "n"
-#    if [[ $? != 0 ]]; then
-#        echo -e "${red}已取消${plain}"
-#        if [[ $1 != 0 ]]; then
-#            before_show_menu
-#        fi
-#        return 0
-#    fi
     bash <(curl -Ls https://raw.githubusercontent.com/DauDau432/XrayR-release/main/install.sh) $version
     if [[ $? == 0 ]]; then
         echo ""
@@ -221,7 +214,7 @@ restart() {
         echo -e "  XrayR đã khởi động lại thành công, vui lòng sử dụng XrayR log để xem nhật ký đang chạy${plain}"
     else
         echo ""
-        echo -e "  XrayR có thể không khởi động được, vui lòng sử dụng XrayR log để xem thông tin nhật ký sau này${plain}"
+        echo -e "  XrayR không khởi động được, vui lòng sử dụng XrayR log để xem thông tin nhật ký sau này${plain}"
     fi
     if [[ $# == 0 ]]; then
         before_show_menu
@@ -254,10 +247,10 @@ disable() {
     systemctl disable XrayR
     if [[ $? == 0 ]]; then
         echo ""
-        echo -e "  XrayR đã hủy khởi động tự động khởi động thành công${plain}"
+        echo -e "  XrayR đã hủy tự động khởi động thành công${plain}"
     else
         echo ""
-        echo -e "  XrayR không thể hủy tự động khởi động khởi động${plain}"
+        echo -e "  XrayR không thể hủy tự động khởi động${plain}"
     fi
 
     if [[ $# == 0 ]]; then
@@ -274,14 +267,7 @@ show_log() {
 
 install_bbr() {
     bash <(curl -L -s https://raw.githubusercontent.com/chiakge/Linux-NetSpeed/master/tcp.sh)
-    #if [[ $? == 0 ]]; then
-    #    echo ""
-    #    echo -e "${green}安装 bbr 成功，请重启服务器${plain}"
-    #else
-    #    echo ""
-    #    echo -e "${red}下载 bbr 安装脚本失败，请检查本机能否连接 Github${plain}"
-    #fi
-
+    
     #before_show_menu
 }
 
@@ -367,9 +353,9 @@ show_status() {
 show_enable_status() {
     check_enabled
     if [[ $? == 0 ]]; then
-        echo -e "  Có tự động bắt đầu không: Có${plain}"
+        echo -e "  Có tự động khởi động không: Có${plain}"
     else
-        echo -e "  Có tự động khởi động hay không: Không${plain}"
+        echo -e "  Có tự động khởi động không: Không${plain}"
     fi
 }
 
@@ -382,7 +368,7 @@ show_XrayR_version() {
         before_show_menu
     fi
 }
-clear
+
 show_usage() {
     echo ""
     echo "------------[Đậu Đậu việt hóa]------------"
@@ -426,7 +412,7 @@ ${green}------ [Đậu Đậu việt hóa] ------${plain}
 ————————————————————————————————
    11. Một cú nhấp chuột cài đặt bbr (hạt nhân mới nhất)
    12. Xem các phiên bản XrayR
-   13. Nâng cấp Tập lệnh Bảo trì
+   13. Nâng cấp Tập lệnh XrayR
 ————————————————————————————————   
  "
  #Các bản cập nhật tiếp theo có thể được thêm vào chuỗi trên
