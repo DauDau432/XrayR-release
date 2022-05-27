@@ -41,10 +41,11 @@ else
   arch="64"
   echo -e "  Không phát hiện được giản đồ, hãy sử dụng lược đồ mặc định: ${arch}${plain}"
 fi
-
+echo ""
 echo "  phiên bản của hệ điều hành: ${arch}"
 
 if [ "$(getconf WORD_BIT)" != '32' ] && [ "$(getconf LONG_BIT)" != '64' ] ; then
+    echo ""
     echo "  Phần mềm này không hỗ trợ hệ thống 32-bit (x86), vui lòng sử dụng hệ thống 64-bit (x86_64), nếu phát hiện sai, vui lòng liên hệ với tác giả"
     exit 2
 fi
@@ -61,14 +62,17 @@ fi
 
 if [[ x"${release}" == x"centos" ]]; then
     if [[ ${os_version} -le 6 ]]; then
+    echo ""
         echo -e "  Vui lòng sử dụng CentOS 7 trở lên！${plain}\n" && exit 1
     fi
 elif [[ x"${release}" == x"ubuntu" ]]; then
     if [[ ${os_version} -lt 16 ]]; then
+    echo ""
         echo -e "  Vui lòng sử dụng Ubuntu 16 trở lên！${plain}\n" && exit 1
     fi
 elif [[ x"${release}" == x"debian" ]]; then
     if [[ ${os_version} -lt 8 ]]; then
+    echo ""
         echo -e "  Vui lòng sử dụng Debian 8 trở lên！${plain}\n" && exit 1
     fi
 fi
@@ -111,22 +115,32 @@ install_XrayR() {
     if  [ $# == 0 ] ;then
         last_version=$(curl -Ls "https://api.github.com/repos/AikoXrayR-Project/XrayR/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')
         if [[ ! -n "$last_version" ]]; then
+	echo ""
             echo -e "  Phát hiện phiên bản XrayR không thành công, có thể vượt quá giới hạn GIthub API, vui lòng thử lại sau hoặc chỉ định cài đặt phiên bản XrayR theo cách thủ công${plain}"
+	    echo ""
             exit 1
         fi
+	echo ""
         echo -e "  Phiên bản mới nhất của XrayR đã được phát hiện：${last_version}，Bắt đầu cài đặt"
+	echo ""
         wget -N --no-check-certificate -O /usr/local/XrayR/XrayR-linux.zip https://github.com/AikoXrayR-Project/XrayR/releases/download/${last_version}/XrayR-linux-${arch}.zip
         if [[ $? -ne 0 ]]; then
+	echo ""
             echo -e "  Tải xuống XrayR thất bại, hãy chắc chắn rằng máy chủ của bạn có thể tải về các tập tin Github${plain}"
+	    echo ""
             exit 1
         fi
     else
         last_version=$1
         url="https://github.com/AikoXrayR-Project/XrayR/releases/download/${last_version}/XrayR-linux-${arch}.zip"
+	echo ""
         echo -e "  Bắt đầu cài đặt XrayR v$1"
+	echo ""
         wget -N --no-check-certificate -O /usr/local/XrayR/XrayR-linux.zip ${url}
         if [[ $? -ne 0 ]]; then
+	echo ""
             echo -e "  Tải xuống XrayR v$1 Thất bại, hãy chắc chắn rằng phiên bản này tồn tại"
+	    echo ""
             exit 1
         fi
     fi
@@ -142,6 +156,7 @@ install_XrayR() {
     systemctl daemon-reload
     systemctl stop XrayR
     systemctl enable XrayR
+    echo ""
     echo -e "  XrayR ${last_version} Quá trình cài đặt hoàn tất, nó đã được thiết lập để bắt đầu tự động"
     cp geoip.dat /etc/XrayR/
     cp geosite.dat /etc/XrayR/ 
@@ -175,7 +190,7 @@ install_XrayR() {
     chmod +x /usr/bin/XrayR
     ln -s /usr/bin/XrayR /usr/bin/xrayr # chữ thường tương thích
     chmod +x /usr/bin/xrayr
-    clear
+ 
     echo -e ""
     echo "------------[Đậu Đậu việt hóa]------------"
     echo "  Cách sử dụng tập lệnh quản lý XrayR (tương thích với thực thi xrayr, không phân biệt chữ hoa chữ thường): "
