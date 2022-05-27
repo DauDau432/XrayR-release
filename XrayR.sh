@@ -408,7 +408,7 @@ show_menu() {
     echo -e ""
     echo -e "
     Các tập lệnh quản lý phụ trợ XrayR，không hoạt động với docker${plain}
-    ${green}--- [Đậu Đậu việt hóa] ---${plain}
+${green}------ [Đậu Đậu việt hóa] ------${plain}
     0. Thay đổi cài đặt
 ————————————————————————————————
     1. Cài đặt XrayR
