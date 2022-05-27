@@ -48,8 +48,4 @@ Nên sử dụng VPS sạch để cài đặt tránh lỗi vặt
 ## Video demo
 [Tại đây](https://youtu.be/nKE_xBWgNM0)
 
-<p align="center">
-  <video controls>
-        <source src="[../file/bunny.mp4](https://youtu.be/nKE_xBWgNM0)">
-    </video>
-</p>
+
