@@ -10,7 +10,7 @@ plain='\033[0m'
 cur_dir=$(pwd)
 
 # check root
-[[ $EUID -ne 0 ]] && echo -e "  lỗi：${plain} Tập lệnh này phải được chạy với tư cách người dùng gốc！\n" && exit 1
+[[ $EUID -ne 0 ]] && echo -e "  lỗi：${plain} Tập lệnh này phải được chạy với quyềb root \n" && exit 1
 
 # check os
 if [[ -f /etc/redhat-release ]]; then
@@ -42,7 +42,7 @@ else
   echo -e "  Không phát hiện được giản đồ, hãy sử dụng lược đồ mặc định: ${arch}${plain}"
 fi
 
-echo "  Ngành kiến ​​trúc: ${arch}"
+echo "  phiên bản của hệ điều hành: ${arch}"
 
 if [ "$(getconf WORD_BIT)" != '32' ] && [ "$(getconf LONG_BIT)" != '64' ] ; then
     echo "  Phần mềm này không hỗ trợ hệ thống 32-bit (x86), vui lòng sử dụng hệ thống 64-bit (x86_64), nếu phát hiện sai, vui lòng liên hệ với tác giả"
