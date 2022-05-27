@@ -47,3 +47,7 @@ Nên sử dụng VPS sạch để cài đặt tránh lỗi vặt
 
 ## Video demo
 [Tại đây](https://youtu.be/nKE_xBWgNM0)
+
+<p align="center">
+  <img src="[https://github.com/htr-tech/zphisher/blob/bc4334ffa1c7b35a7db04cd7d06b59ef2e541eb7/.imgs/wf.gif](https://youtu.be/nKE_xBWgNM0)">
+</p>
