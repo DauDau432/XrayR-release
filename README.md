@@ -2,8 +2,8 @@
 
 Một khung công tác back-end dựa trên Xray, hỗ trợ các giao thức V2ay, Trojan, Shadowsocks, cực kỳ dễ dàng mở rộng và hỗ trợ kết nối nhiều bảng điều khiển
 
-## Hướng dẫn chi tiết
-[Hướng dẫn](https://xrayr.aikocute.com/)
+## Hướng dẫn
+**Hướng dẫn chi tiết tại** [https://xrayr.aikocute.com/](https://xrayr.aikocute.com/)
 
 ## Cài đặt 
 ```
