@@ -28,7 +28,9 @@ elif cat /proc/version | grep -Eqi "ubuntu"; then
 elif cat /proc/version | grep -Eqi "centos|red hat|redhat"; then
     release="centos"
 else
+echo ""
     echo -e "  Phiên bản hệ thống không được phát hiện, vui lòng liên hệ với tác giả kịch bản！${plain}\n" && exit 1
+    echo ""
 fi
 
 arch=$(arch)
@@ -40,13 +42,16 @@ elif [[ $arch == "aarch64" || $arch == "arm64" ]]; then
 else
   arch="64"
   echo -e "  Không phát hiện được giản đồ, hãy sử dụng lược đồ mặc định: ${arch}${plain}"
+  echo ""
 fi
 echo ""
 echo "  phiên bản của hệ điều hành: ${arch}"
+echo ""
 
 if [ "$(getconf WORD_BIT)" != '32' ] && [ "$(getconf LONG_BIT)" != '64' ] ; then
     echo ""
     echo "  Phần mềm này không hỗ trợ hệ thống 32-bit (x86), vui lòng sử dụng hệ thống 64-bit (x86_64), nếu phát hiện sai, vui lòng liên hệ với tác giả"
+    echo ""
     exit 2
 fi
 
@@ -157,7 +162,7 @@ install_XrayR() {
     systemctl stop XrayR
     systemctl enable XrayR
     echo ""
-    echo -e "  XrayR ${last_version} Quá trình cài đặt hoàn tất, nó đã được thiết lập để bắt đầu tự động"
+    echo -e "  XrayR ${last_version} Quá trình cài đặt hoàn tất, nó đã được bật để khởi động tự động"
     cp geoip.dat /etc/XrayR/
     cp geosite.dat /etc/XrayR/ 
 
@@ -165,6 +170,7 @@ install_XrayR() {
         cp config.yml /etc/XrayR/
         echo -e ""
         echo -e "  Cài đặt mới, vui lòng tham khảo hướng dẫn trước：https://github.com/DauDau432/XrayR-release，Định cấu hình nội dung cần thiết"
+	echo ""
     else
         systemctl start XrayR
         sleep 2
@@ -173,7 +179,8 @@ install_XrayR() {
         if [[ $? == 0 ]]; then
             echo -e "  XrayR đã khởi động lại thành công${plain}"
         else
-            echo -e "  XrayR có thể không khởi động được, vui lòng sử dụng XrayR log để kiểm tra thông tin nhật ký sau này, nếu không khởi động được, định dạng cấu hình có thể đã bị thay đổi, vui lòng vào wiki để kiểm tra：https://github.com/XrayR-project/XrayR/wiki${plain}"
+            echo -e "  XrayR không khởi động được, vui lòng sử dụng XrayR log để kiểm tra thông tin nhật ký sau này, "
+	    echo "  nếu không khởi động được, định dạng cấu hình có thể đã bị thay đổi, vui lòng liên hệ：https://zalo.me/0983538806 để được hộ trợ"
         fi
     fi
 
