@@ -60,7 +60,7 @@ fi
 
 confirm() {
     if [[ $# > 1 ]]; then
-        echo && read -p "$1 [mặc định$2]: " temp
+        echo && read -p "$1 [mặc định $2]: " temp
         if [[ x"${temp}" == x"" ]]; then
             temp=$2
         fi
@@ -141,7 +141,7 @@ config() {
 }
 
 uninstall() {
-    confirm "  Bạn có chắc chắn muốn gỡ cài đặt XrayR không?" " n"
+    confirm "  Bạn có chắc chắn muốn gỡ cài đặt XrayR không?" "n"
     if [[ $? != 0 ]]; then
         if [[ $# == 0 ]]; then
             show_menu
