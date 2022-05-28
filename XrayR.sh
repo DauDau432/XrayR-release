@@ -379,11 +379,11 @@ show_usage() {
     echo "  XrayR stop         - Dừng XrayR"
     echo "  XrayR restart      - Khởi động lại XrayR"
     echo "  XrayR status       - Xem trạng thái XrayR"
-    echo "  XrayR enable       - Đặt XrayR để bắt đầu tự động"
+    echo "  XrayR enable       - Bật tự động khởi động XrayR"
     echo "  XrayR disable      - Hủy tự động khởi động XrayR"
     echo "  XrayR log          - Xem nhật ký XrayR"
     echo "  XrayR update       - Cập nhật XrayR"
-    echo "  XrayR update x.x.x - Cập nhật phiên bản được chỉ định XrayR"
+    echo "  XrayR update x.x.x - Cập nhật phiên bản XrayR"
     echo "  XrayR install      - Cài đặt XrayR"
     echo "  XrayR uninstall    - Gỡ cài đặt XrayR "
     echo "  XrayR version      - Xem phiên bản XrayR"
@@ -393,9 +393,9 @@ clear
 show_menu() {
     echo -e ""
     echo -e "
-    Các tập lệnh quản lý phụ trợ XrayR，không hoạt động với docker${plain}
+    Các tập lệnh quản lý XrayR，không hoạt động với docker${plain}
 ${green}------ [Đậu Đậu việt hóa] ------${plain}
-    0. Thay đổi cài đặt
+    0. Chỉnh sửa config
 ————————————————————————————————
     1. Cài đặt XrayR
     2. Cập nhật XrayR
