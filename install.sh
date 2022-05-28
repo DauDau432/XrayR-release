@@ -215,7 +215,7 @@ install_XrayR() {
     echo "  XrayR config             - hiển thị nội dung tệp cấu hình"
     echo "  XrayR install            - Cài đặt XrayR"
     echo "  XrayR uninstall          - Gỡ cài đặt XrayR"
-    echo "  XrayR version            - Xem các phiên bản XrayR"
+    echo "  XrayR version            - Xem phiên bản XrayR"
     echo "------------------------------------------"
 }
 
