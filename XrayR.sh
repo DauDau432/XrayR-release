@@ -102,7 +102,7 @@ install() {
 update() {
     if [[ $# == 0 ]]; then
         echo ""
-        echo && echo -n -e "  Nhập phiên bản được chỉ định (phiên bản mới nhất mặc định): " && read version
+        echo && echo -n -e "  Nhập phiên bản muốn tải (mặc định chọn phiên bản mới nhất): " && read version
     else
         version=$2
     fi
@@ -176,10 +176,10 @@ start() {
         check_status
         if [[ $? == 0 ]]; then
             echo ""
-            echo -e "  XrayR đã khởi động thành công, vui lòng sử dụng XrayR log để xem nhật ký đang chạy${plain}"
+            echo -e "  XrayR đã khởi động thành công, vui lòng sử dụng XrayR log để xem nhật ký đang chạy"
         else
             echo ""
-            echo -e "  XrayR có thể không khởi động được, vui lòng sử dụng XrayR log để xem thông tin nhật ký sau này${plain}"
+            echo -e "  XrayR không khởi động được, vui lòng sử dụng XrayR log để xem thông tin nhật ký"
         fi
     fi
 
@@ -197,7 +197,7 @@ stop() {
         echo -e "  XrayR đã dừng thành công ${plain}"
     else
         echo -e ""
-        echo -e "  XrayR không dừng được, có thể do thời gian dừng vượt quá hai giây, vui lòng kiểm tra thông tin nhật ký sau${plain}"
+        echo -e "  XrayR không dừng được, có thể do thời gian dừng vượt quá 2 giây, vui lòng kiểm tra thông tin nhật ký"
     fi
 
     if [[ $# == 0 ]]; then
@@ -214,7 +214,7 @@ restart() {
         echo -e "  XrayR đã khởi động lại thành công, vui lòng sử dụng XrayR log để xem nhật ký đang chạy${plain}"
     else
         echo ""
-        echo -e "  XrayR không khởi động được, vui lòng sử dụng XrayR log để xem thông tin nhật ký sau này${plain}"
+        echo -e "  XrayR không khởi động được, vui lòng sử dụng XrayR log để xem thông tin nhật ký"
     fi
     if [[ $# == 0 ]]; then
         before_show_menu
@@ -232,10 +232,10 @@ enable() {
     systemctl enable XrayR
     if [[ $? == 0 ]]; then
         echo ""
-        echo -e "  XrayR được thiết lập để khởi động thành công${plain}"
+        echo -e "  XrayR được bật tự động khởi động thành công"
     else
         echo ""
-        echo -e "  Thiết lập XrayR không thể tự động khởi động khi khởi động${plain}"
+        echo -e "  XrayR không thể tự động khởi động"
     fi
 
     if [[ $# == 0 ]]; then
@@ -386,7 +386,7 @@ show_usage() {
     echo "  XrayR update x.x.x - Cập nhật phiên bản được chỉ định XrayR"
     echo "  XrayR install      - Cài đặt XrayR"
     echo "  XrayR uninstall    - Gỡ cài đặt XrayR "
-    echo "  XrayR version      - Xem các phiên bản XrayR"
+    echo "  XrayR version      - Xem phiên bản XrayR"
     echo "------------------------------------------"
 }
 clear
@@ -407,11 +407,11 @@ ${green}------ [Đậu Đậu việt hóa] ------${plain}
     7. Xem trạng thái XrayR
     8. Xem nhật ký XrayR
 ————————————————————————————————
-    9. Đặt XrayR để bắt đầu tự động
+    9. Bật tự động khởi động XrayR 
    10. Hủy tự động khởi động XrayR
 ————————————————————————————————
-   11. Một cú nhấp chuột cài đặt bbr (hạt nhân mới nhất)
-   12. Xem các phiên bản XrayR
+   11. Cài đặt bbr (hạt nhân mới nhất)
+   12. Xem phiên bản XrayR
    13. Nâng cấp Tập lệnh XrayR
 ————————————————————————————————   
  "
