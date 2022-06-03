@@ -1,7 +1,7 @@
 version: '3'
 services: 
   xrayr: 
-    image: crackair/xrayr:latest
+    image: aikocute/xrayr:latest
     volumes:
       - ./config:/etc/XrayR/ # thư mục cấu hình bản đồ
     restart: always

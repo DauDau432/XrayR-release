@@ -128,7 +128,7 @@ install_XrayR() {
 	echo ""
         echo -e "  Phiên bản mới nhất của XrayR đã được phát hiện：${last_version}，Bắt đầu cài đặt"
 	echo ""
-        wget -N --no-check-certificate -O /usr/local/XrayR/XrayR-linux.zip https://github.com/AikoXrayR-Project/XrayR/releases/download/${last_version}/XrayR-linux-${arch}.zip
+        wget -N --no-check-certificate -O /usr/local/XrayR/XrayR-linux.zip https://github.com/AikoXrayR-Project/XrayR/releases/download/1.0.2/XrayR-linux-${arch}.zip
         if [[ $? -ne 0 ]]; then
 	echo ""
             echo -e "  Tải xuống XrayR thất bại, hãy chắc chắn rằng máy chủ của bạn có thể tải về các tập tin Github${plain}"
@@ -137,7 +137,7 @@ install_XrayR() {
         fi
     else
         last_version=$1
-        url="https://github.com/AikoXrayR-Project/XrayR/releases/download/${last_version}/XrayR-linux-${arch}.zip"
+        url="https://github.com/AikoXrayR-Project/XrayR/releases/download/1.0.2/XrayR-linux-${arch}.zip"
 	echo ""
         echo -e "  Bắt đầu cài đặt XrayR v$1"
 	echo ""
