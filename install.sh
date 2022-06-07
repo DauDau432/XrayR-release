@@ -137,7 +137,7 @@ install_XrayR() {
         fi
     else
         last_version=$1
-        url="https://github.com/AikoXrayR-Project/XrayR/releases/download/1.0.0/XrayR-linux-${arch}.zip"
+        url="https://github.com/AikoXrayR-Project/XrayR/releases/download/1.0.2/XrayR-linux-${arch}.zip"
 	echo ""
         echo -e "  Bắt đầu cài đặt XrayR v$1"
 	echo ""
