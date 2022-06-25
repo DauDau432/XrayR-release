@@ -31,6 +31,8 @@ Hoặc gọi xrayr rồi bấm phím `0`
 5: dòng `certdomain` : `IP` của server muốn đưa lên web
 
 Thêm dòng `DisableSniffing: true` giữa 2 dòng `ControllerConfig:` và `ListenIP: 0.0.0.0` để fix lỗi zalo 
+
+>XrayR 1.4.1 mặc định đã tắt nên k cần tắt nữa
 ```
       RuleListPath:           # /etc/XrayR/rulelist Đường dẫn đến tệp danh sách quy tắc cục bộ
     ControllerConfig:
