@@ -151,7 +151,7 @@ uninstall() {
     systemctl stop XrayR
     systemctl disable XrayR
     rm /etc/systemd/system/XrayR.service -f
-    systemctl daemon-reload
+    systemctl daemon-reload#copyright by daudau
     systemctl reset-failed
     rm /etc/XrayR/ -rf
     rm /usr/local/XrayR/ -rf
