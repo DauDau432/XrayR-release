@@ -3,8 +3,6 @@ Một khung phụ trợ Xray có thể dễ dàng hỗ trợ nhiều bảng.
 
 Một khung công tác back-end dựa trên Xray, hỗ trợ các giao thức V2ay, Trojan, Shadowsocks, cực kỳ dễ dàng mở rộng và hỗ trợ kết nối nhiều bảng điều khiển
 
-## Hướng dẫn
-**Hướng dẫn chi tiết tại** [https://xrayr.aikocute.com/](https://xrayr.aikocute.com/)
 
 ## Cài đặt 
 ***Phiên bản thường***
