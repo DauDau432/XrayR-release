@@ -1,7 +1,6 @@
 #!/bin/bash
 clear
 echo ""
-echo ""
 echo "   1. Cài đặt"
 echo "   2. update config"
 echo "   3. thêm node"
