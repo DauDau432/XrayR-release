@@ -201,7 +201,7 @@ install_XrayR() {
  
     echo -e ""
     echo "------------[Đậu Đậu việt hóa]------------"
-    echo "  Cách sử dụng tập lệnh quản lý XrayR (Phát triển bởi AikoCute)"
+    echo "  Cách sử dụng tập lệnh quản lý XrayR"
     echo "------------------------------------------"
     echo "  XrayR                    - Hiển thị menu quản lý (nhiều chức năng hơn)"
     echo "  XrayR start              - Khởi động XrayR"
