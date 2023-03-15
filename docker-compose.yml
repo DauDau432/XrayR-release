@@ -1,8 +1,8 @@
 version: '3'
 services: 
   xrayr: 
-    image: aikocute/xrayr:latest
+    image: crackair/xrayr:latest
     volumes:
-      - ./config:/etc/XrayR/ # thư mục cấu hình bản đồ
+      - ./config:/etc/XrayR/ 
     restart: always
     network_mode: host
