@@ -1,12 +1,6 @@
 #!/bin/bash
 clear
 echo ""
-echo "     _  __                  ____  "
-echo "    | |/ /_________ ___  __/ __ \ "
-echo "    |   // ___/ __ `/ / / / /_/ / "
-echo "   /   |/ /  / /_/ / /_/ / _, _/  "
-echo "  /_/|_/_/   \__,_/\__, /_/ |_|   "
-echo "                /____/            "
 echo ""
 echo "   1. Cài đặt"
 echo "   2. update config"
