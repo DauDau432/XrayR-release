@@ -38,7 +38,7 @@ Thêm dòng `DisableSniffing: true` giữa 2 dòng `ControllerConfig:` và `List
 >XrayR 1.4.1 mặc định đã tắt nên k cần tắt nữa
 ```
       RuleListPath:           # /etc/XrayR/rulelist Đường dẫn đến tệp danh sách quy tắc cục bộ
-      ControllerConfig:
+    ControllerConfig:
       DisableSniffing: true   # Tắt sniffing để fix lỗi zalo 
       ListenIP: 0.0.0.0       # Địa chỉ IP bạn muốn nghe
       SendIP: 0.0.0.0         # Địa chỉ IP bạn muốn gửi gói
