@@ -4,31 +4,31 @@ echo ""
 echo "   1. Cài đặt"
 echo "   2. update config"
 echo "   3. thêm node"
-read -p "   Vui lòng chọn một số và nhấn Enter (Enter theo mặc định Cài đặt)  " num
+read -p "   Lựa chọn của bạn là (mặc định Cài đặt): " num
 [ -z "${num}" ] && num="1"
 	
 pre_install(){
  clear
-	read -p "Nhập số web cần cài và nhấn Enter (Enter theo mặc định 1) " n
+	read -p "  Nhập số Node cần cài (mặc định 1): " n
 	 [ -z "${n}" ] && n="1"
     a=0
   while [ $a -lt $n ]
  do
- read -p " Nhập domain web (không cần https://):" api_host
+ read -p "  Nhập domain web (không cần https://): " api_host
     [ -z "${api_host}" ] && api_host=0
     echo "--------------------------------"
-  echo "Bạn đã chọn https://${api_host}"
+  echo "  Web của bạn là https://${api_host}"
   echo "--------------------------------"
   #key web
-  read -p " Nhập key web :" api_key
+  read -p "  Nhập key của web: " api_key
     [ -z "${api_key}" ] && api_key=0
   echo "--------------------------------"
-  echo "Bạn đã chọn https://${api_host}"
+  echo "  Key của Web bạn là ${api_key}"
   echo "--------------------------------"
 
-  echo -e "[1] V2ray"
-  echo -e "[2] Trojan"
-   read -p "NodeType:" NodeType
+  echo -e "  [1] V2ray"
+  echo -e "  [2] Trojan"
+   read -p "  Loại Node: " NodeType
   if [ "$NodeType" == "1" ]; then
     NodeType="V2ray"
   elif [ "$NodeType" == "2" ]; then
@@ -37,31 +37,31 @@ pre_install(){
    NodeType="V2ray"
   fi
   echo "-------------------------------"
-  echo -e "NodeType: ${NodeType}"
+  echo -e "  Loại Node của bạn là ${NodeType}"
   echo "-------------------------------"
 
 
   #node id
-    read -p " ID nút (Node_ID):" node_id
+    read -p "  Nhập ID Node: " node_id
   [ -z "${node_id}" ] && node_id=0
   echo "-------------------------------"
-  echo -e "Node_ID: ${node_id}"
+  echo -e "  Node ID của bạn là ${node_id}"
   echo "-------------------------------"
   
 
   #giới hạn thiết bị
-read -p "Giới hạn thiết bị :" DeviceLimit
+read -p "  Nhập giới hạn thiết bị: " DeviceLimit
   [ -z "${DeviceLimit}" ] && DeviceLimit="0"
   echo "-------------------------------"
-  echo "Thiết bị tối đa là: ${DeviceLimit}"
+  echo "  Thiết bị tối đa là ${DeviceLimit}"
   echo "-------------------------------"
   
   
   #IP vps
- read -p "Nhập domain :" CertDomain
+ read -p "  Nhập địa chỉ Node: " CertDomain
   [ -z "${CertDomain}" ] && CertDomain="0"
  echo "-------------------------------"
-  echo "ip : ${CertDomain}"
+  echo "  Địa chỉ Node là ${CertDomain}"
  echo "-------------------------------"
 
  config
@@ -73,27 +73,27 @@ done
 #clone node
 clone_node(){
   clear
-	read -p "Nhập số node cần cài thêm và nhấn Enter (Enter theo mặc định 1) " n
+	read -p "  Nhập số Node cần cài thêm (mặc định 1): " n
 	 [ -z "${n}" ] && n="1"
     a=0
   while [ $a -lt $n ]
   do
   
   #link web 
-   read -p " Nhập domain web (không cần https://):" api_host
+   read -p "  Nhập domain web (không cần https://): " api_host
     [ -z "${api_host}" ] && api_host=0
     echo "--------------------------------"
-  echo "Bạn đã chọn https://${api_host}"
+  echo "  Web của bạn là https://${api_host}"
   echo "--------------------------------"
   #key web
-  read -p " Nhập key web :" api_key
+  read -p "  Nhập key của web: " api_key
     [ -z "${api_key}" ] && api_key=0
   echo "--------------------------------"
-  echo "Bạn đã chọn https://${api_host}"
+  echo "  Key của web là ${api_key}"
   echo "--------------------------------"
 
-  echo -e "[1] V2ray"
-  echo -e "[2] Trojan"
+  echo -e "  [1] V2ray"
+  echo -e "  [2] Trojan"
    read -p "NodeType:" NodeType
   if [ "$NodeType" == "1" ]; then
     NodeType="V2ray"
@@ -103,29 +103,29 @@ clone_node(){
    NodeType="V2ray"
   fi
   echo "-------------------------------"
-  echo -e "NodeType: ${NodeType}"
+  echo -e "  Loại Node của bạn là ${NodeType}"
   echo "-------------------------------"
 
   #node id
-    read -p " ID nút (Node_ID):" node_id
+    read -p "  Nhập ID Node: " node_id
   [ -z "${node_id}" ] && node_id=0
   echo "-------------------------------"
-  echo -e "Node_ID: ${node_id}"
+  echo -e "  ID Node của bạn là ${node_id}"
   echo "-------------------------------"
   
 
   #giới hạn thiết bị
-read -p "Giới hạn thiết bị :" DeviceLimit
+read -p "  Nhập giới hạn thiết bị: " DeviceLimit
   [ -z "${DeviceLimit}" ] && DeviceLimit="0"
   echo "-------------------------------"
-  echo "Thiết bị tối đa là: ${DeviceLimit}"
+  echo "  Thiết bị tối đa là ${DeviceLimit}"
   echo "-------------------------------"
   
   #IP vps
- read -p "Nhập domain :" CertDomain
+ read -p "  Nhập địa chỉ Node: " CertDomain
   [ -z "${CertDomain}" ] && CertDomain="0"
  echo "-------------------------------"
-  echo "ip : ${CertDomain}"
+  echo "  Địa chỉ Node là ${CertDomain}"
  echo "-------------------------------"
 
  config
