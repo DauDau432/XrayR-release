@@ -6,11 +6,11 @@ echo "   2. update config"
 echo "   3. thêm node"
 read -p "   Lựa chọn của bạn là (mặc định Cài đặt): " num
 [ -z "${num}" ] && num="1"
-	
+    
 pre_install(){
  clear
-	read -p "  Nhập số Node cần cài (mặc định 1): " n
-	 [ -z "${n}" ] && n="1"
+    read -p "  Nhập số Node cần cài (mặc định 1): " n
+     [ -z "${n}" ] && n="1"
     a=0
   while [ $a -lt $n ]
  do
@@ -23,12 +23,12 @@ pre_install(){
   read -p "  Nhập key của web: " api_key
     [ -z "${api_key}" ] && api_key=0
   echo "--------------------------------"
-  echo "  Key của Web bạn là ${api_key}"
+  echo "  Key của Web là ${api_key}"
   echo "--------------------------------"
 
   echo -e "  [1] V2ray"
   echo -e "  [2] Trojan"
-   read -p "  Loại Node: " NodeType
+   read -p "  Nhập loại Node: " NodeType
   if [ "$NodeType" == "1" ]; then
     NodeType="V2ray"
   elif [ "$NodeType" == "2" ]; then
@@ -37,7 +37,7 @@ pre_install(){
    NodeType="V2ray"
   fi
   echo "-------------------------------"
-  echo -e "  Loại Node của bạn là ${NodeType}"
+  echo -e "  Loại Node là ${NodeType}"
   echo "-------------------------------"
 
 
@@ -45,7 +45,7 @@ pre_install(){
     read -p "  Nhập ID Node: " node_id
   [ -z "${node_id}" ] && node_id=0
   echo "-------------------------------"
-  echo -e "  Node ID của bạn là ${node_id}"
+  echo -e "  ID Node là ${node_id}"
   echo "-------------------------------"
   
 
@@ -73,8 +73,8 @@ done
 #clone node
 clone_node(){
   clear
-	read -p "  Nhập số Node cần cài thêm (mặc định 1): " n
-	 [ -z "${n}" ] && n="1"
+    read -p "  Nhập số Node cần cài thêm (mặc định 1): " n
+     [ -z "${n}" ] && n="1"
     a=0
   while [ $a -lt $n ]
   do
@@ -94,7 +94,7 @@ clone_node(){
 
   echo -e "  [1] V2ray"
   echo -e "  [2] Trojan"
-   read -p "NodeType:" NodeType
+   read -p "  Nhập loại Node: " NodeType
   if [ "$NodeType" == "1" ]; then
     NodeType="V2ray"
   elif [ "$NodeType" == "2" ]; then
@@ -103,14 +103,14 @@ clone_node(){
    NodeType="V2ray"
   fi
   echo "-------------------------------"
-  echo -e "  Loại Node của bạn là ${NodeType}"
+  echo -e "  Loại Node là ${NodeType}"
   echo "-------------------------------"
 
   #node id
     read -p "  Nhập ID Node: " node_id
   [ -z "${node_id}" ] && node_id=0
   echo "-------------------------------"
-  echo -e "  ID Node của bạn là ${node_id}"
+  echo -e "  ID Node là ${node_id}"
   echo "-------------------------------"
   
 
