@@ -6,7 +6,6 @@ clear
 echo ""
 read -p "  Nhập domain web (không cần https://): " api_host
 [ -z "${api_host}" ] && { echo "  Domain không được để trống."; exit 1; }
-echo "--------------------------------"
 read -p "  Nhập key của web: " api_key
 [ -z "${api_key}" ] && { echo "  Key không được để trống."; exit 1; }
 echo "--------------------------------"
@@ -34,7 +33,9 @@ for i in $(seq 1 $node_count); do
   fi
   
   echo "  Node $i (cổng $port)"
-  read -p "  Nhập loại Node (cổng $port) [1] V2ray  [2] Trojan: " NodeType
+  echo "  [1] V2ray"
+  echo "  [2] Trojan"
+  read -p "  Chọn loại Node (cổng $port): " NodeType
   if [ "$NodeType" == "1" ]; then
     NodeType="V2ray"
   elif [ "$NodeType" == "2" ]; then
@@ -55,7 +56,7 @@ done
 # Hiển thị thông tin đã nhập và yêu cầu xác nhận
 clear
 echo ""
-echo " Thông tin cấu hình:"
+echo " Thông tin cấu hình"
 echo "--------------------------------"
 echo "  Domain web: https://${api_host}"
 echo "  Key web: ${api_key}"
@@ -65,6 +66,7 @@ for i in $(seq 1 $node_count); do
   else
     port="443"
   fi
+  echo ""
   echo "  Node $i (cổng $port):"
   echo "    Loại Node: ${nodes[$i,NodeType]}"
   echo "    ID Node: ${nodes[$i,node_id]}"
@@ -169,4 +171,6 @@ for i in $(seq 1 $node_count); do
 done
 
 cd /root
+clear
+echo ""
 xrayr start
