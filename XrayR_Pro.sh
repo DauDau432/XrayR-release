@@ -174,3 +174,4 @@ cd /root
 clear
 echo ""
 xrayr start
+
