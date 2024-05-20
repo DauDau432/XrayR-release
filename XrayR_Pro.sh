@@ -60,6 +60,7 @@ echo " Thông tin cấu hình"
 echo "--------------------------------"
 echo "  Domain web: https://${api_host}"
 echo "  Key web: ${api_key}"
+echo "  Địa chỉ Node: ${nodes[$i,CertDomain]}"
 for i in $(seq 1 $node_count); do
   if [ "$i" == "1" ]; then
     port="80"
@@ -67,10 +68,9 @@ for i in $(seq 1 $node_count); do
     port="443"
   fi
   echo ""
-  echo "  Node $i (cổng $port):"
+  echo "  Node $i (cổng $port)"
   echo "    Loại Node: ${nodes[$i,NodeType]}"
   echo "    ID Node: ${nodes[$i,node_id]}"
-  echo "    Địa chỉ Node: ${nodes[$i,CertDomain]}"
 done
 echo "--------------------------------"
 read -p "  Bạn có muốn tiếp tục cài đặt không? (y/n): " confirm
@@ -174,4 +174,3 @@ cd /root
 clear
 echo ""
 xrayr start
-
