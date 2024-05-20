@@ -31,7 +31,7 @@ for i in $(seq 1 $node_count); do
   else
     port="443"
   fi
-  
+  echo ""
   echo "  Node $i (cổng $port)"
   echo "  [1] V2ray"
   echo "  [2] Trojan"
