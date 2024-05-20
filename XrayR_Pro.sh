@@ -1,163 +1,106 @@
 #!/bin/bash
+
+clear
+
+# Hỏi thông tin chung
+echo ""
+read -p "  Nhập domain web (không cần https://): " api_host
+[ -z "${api_host}" ] && { echo "  Domain không được để trống."; exit 1; }
+echo "--------------------------------"
+read -p "  Nhập key của web: " api_key
+[ -z "${api_key}" ] && { echo "  Key không được để trống."; exit 1; }
+echo "--------------------------------"
+
+# Hỏi số lượng node
+read -p "  Nhập số lượng node cần cài (1 hoặc 2, mặc định 1): " node_count
+[ -z "${node_count}" ] && node_count="1"
+if [[ "$node_count" != "1" && "$node_count" != "2" ]]; then
+  echo "  Số lượng node không hợp lệ, chỉ chấp nhận 1 hoặc 2."
+  exit 1
+fi
+
+# Lấy địa chỉ IP của VPS
+vps_ip=$(hostname -I | awk '{print $1}')
+
+# Khai báo mảng lưu thông tin node
+declare -A nodes
+
+# Hỏi thông tin cho từng node
+for i in $(seq 1 $node_count); do
+  if [ "$i" == "1" ]; then
+    port="80"
+  else
+    port="443"
+  fi
+  
+  echo "  Node $i (cổng $port)"
+  read -p "  Nhập loại Node (cổng $port) [1] V2ray  [2] Trojan: " NodeType
+  if [ "$NodeType" == "1" ]; then
+    NodeType="V2ray"
+  elif [ "$NodeType" == "2" ]; then
+    NodeType="Trojan"
+  else
+    echo "  Loại Node không hợp lệ, mặc định là V2ray."
+    NodeType="V2ray"
+  fi
+
+  read -p "  Nhập ID Node (cổng $port): " node_id
+  [ -z "${node_id}" ] && { echo "  ID Node không được để trống."; exit 1; }
+  
+  nodes[$i,NodeType]=$NodeType
+  nodes[$i,node_id]=$node_id
+  nodes[$i,CertDomain]=$vps_ip
+done
+
+# Hiển thị thông tin đã nhập và yêu cầu xác nhận
 clear
 echo ""
-echo "   1. Cài đặt"
-echo "   2. update config"
-echo "   3. thêm node"
-read -p "   Lựa chọn của bạn là (mặc định Cài đặt): " num
-[ -z "${num}" ] && num="1"
-    
-pre_install(){
- clear
-    read -p "  Nhập số Node cần cài (mặc định 1): " n
-     [ -z "${n}" ] && n="1"
-    a=0
-  while [ $a -lt $n ]
- do
- read -p "  Nhập domain web (không cần https://): " api_host
-    [ -z "${api_host}" ] && api_host=0
-    echo "--------------------------------"
-  echo "  Web của bạn là https://${api_host}"
-  echo "--------------------------------"
-  #key web
-  read -p "  Nhập key của web: " api_key
-    [ -z "${api_key}" ] && api_key=0
-  echo "--------------------------------"
-  echo "  Key của Web là ${api_key}"
-  echo "--------------------------------"
-
-  echo -e "  [1] V2ray"
-  echo -e "  [2] Trojan"
-   read -p "  Nhập loại Node: " NodeType
-  if [ "$NodeType" == "1" ]; then
-    NodeType="V2ray"
-  elif [ "$NodeType" == "2" ]; then
-    NodeType="Trojan"
-  else 
-   NodeType="V2ray"
+echo " Thông tin cấu hình:"
+echo "--------------------------------"
+echo "  Domain web: https://${api_host}"
+echo "  Key web: ${api_key}"
+for i in $(seq 1 $node_count); do
+  if [ "$i" == "1" ]; then
+    port="80"
+  else
+    port="443"
   fi
-  echo "-------------------------------"
-  echo -e "  Loại Node là ${NodeType}"
-  echo "-------------------------------"
-
-
-  #node id
-    read -p "  Nhập ID Node: " node_id
-  [ -z "${node_id}" ] && node_id=0
-  echo "-------------------------------"
-  echo -e "  ID Node là ${node_id}"
-  echo "-------------------------------"
-  
-
-  #giới hạn thiết bị
-read -p "  Nhập giới hạn thiết bị: " DeviceLimit
-  [ -z "${DeviceLimit}" ] && DeviceLimit="0"
-  echo "-------------------------------"
-  echo "  Thiết bị tối đa là ${DeviceLimit}"
-  echo "-------------------------------"
-  
-  
-  #IP vps
- read -p "  Nhập địa chỉ Node: " CertDomain
-  [ -z "${CertDomain}" ] && CertDomain="0"
- echo "-------------------------------"
-  echo "  Địa chỉ Node là ${CertDomain}"
- echo "-------------------------------"
-
- config
-  a=$((a+1))
+  echo "  Node $i (cổng $port):"
+  echo "    Loại Node: ${nodes[$i,NodeType]}"
+  echo "    ID Node: ${nodes[$i,node_id]}"
+  echo "    Địa chỉ Node: ${nodes[$i,CertDomain]}"
 done
-}
+echo "--------------------------------"
+read -p "  Bạn có muốn tiếp tục cài đặt không? (y/n): " confirm
+if [ "$confirm" != "y" ]; then
+  echo "Hủy bỏ cài đặt."
+  exit 0
+fi
 
+# Hàm cài đặt
+install_node() {
+  local i=$1
+  local NodeType=${nodes[$i,NodeType]}
+  local node_id=${nodes[$i,node_id]}
+  local CertDomain=${nodes[$i,CertDomain]}
 
-#clone node
-clone_node(){
-  clear
-    read -p "  Nhập số Node cần cài thêm (mặc định 1): " n
-     [ -z "${n}" ] && n="1"
-    a=0
-  while [ $a -lt $n ]
-  do
-  
-  #link web 
-   read -p "  Nhập domain web (không cần https://): " api_host
-    [ -z "${api_host}" ] && api_host=0
-    echo "--------------------------------"
-  echo "  Web của bạn là https://${api_host}"
-  echo "--------------------------------"
-  #key web
-  read -p "  Nhập key của web: " api_key
-    [ -z "${api_key}" ] && api_key=0
-  echo "--------------------------------"
-  echo "  Key của web là ${api_key}"
-  echo "--------------------------------"
-
-  echo -e "  [1] V2ray"
-  echo -e "  [2] Trojan"
-   read -p "  Nhập loại Node: " NodeType
-  if [ "$NodeType" == "1" ]; then
-    NodeType="V2ray"
-  elif [ "$NodeType" == "2" ]; then
-    NodeType="Trojan"
-  else 
-   NodeType="V2ray"
-  fi
-  echo "-------------------------------"
-  echo -e "  Loại Node là ${NodeType}"
-  echo "-------------------------------"
-
-  #node id
-    read -p "  Nhập ID Node: " node_id
-  [ -z "${node_id}" ] && node_id=0
-  echo "-------------------------------"
-  echo -e "  ID Node là ${node_id}"
-  echo "-------------------------------"
-  
-
-  #giới hạn thiết bị
-read -p "  Nhập giới hạn thiết bị: " DeviceLimit
-  [ -z "${DeviceLimit}" ] && DeviceLimit="0"
-  echo "-------------------------------"
-  echo "  Thiết bị tối đa là ${DeviceLimit}"
-  echo "-------------------------------"
-  
-  #IP vps
- read -p "  Nhập địa chỉ Node: " CertDomain
-  [ -z "${CertDomain}" ] && CertDomain="0"
- echo "-------------------------------"
-  echo "  Địa chỉ Node là ${CertDomain}"
- echo "-------------------------------"
-
- config
-  a=$((a+1))
-  done
-}
-
-
-
-
-
-
-
-config(){
-cd /etc/XrayR
-cat >>config.yml<<EOF
+  cat >>/etc/XrayR/config.yml<<EOF
   -
     PanelType: "V2board" # Panel type: SSpanel, V2board, PMpanel, Proxypanel, V2RaySocks
     ApiConfig:
-      ApiHost: "https://$api_host"
-      ApiKey: "$api_key"
-      NodeID: $node_id
-      NodeType: $NodeType # Node type: V2ray, Shadowsocks, Trojan, Shadowsocks-Plugin
+      ApiHost: "https://${api_host}"
+      ApiKey: "${api_key}"
+      NodeID: ${node_id}
+      NodeType: ${NodeType} # Node type: V2ray, Shadowsocks, Trojan, Shadowsocks-Plugin
       Timeout: 30 # Timeout for the api request
       EnableVless: false # Enable Vless for V2ray Type
       EnableXTLS: false # Enable XTLS for V2ray and Trojan
       SpeedLimit: 0 # Mbps, Local settings will replace remote settings, 0 means disable
-      DeviceLimit: $DeviceLimit # Local settings will replace remote settings, 0 means disable
+      DeviceLimit: 0 # Local settings will replace remote settings, 0 means disable
       RuleListPath: # /etc/XrayR/rulelist Path to local rulelist file
     ControllerConfig:
       ListenIP: 0.0.0.0 # IP address you want to listen
-      SendIP: 0.0.0.0 # IP address you want to send pacakage
+      SendIP: 0.0.0.0 # IP address you want to send package
       UpdatePeriodic: 60 # Time to update the nodeinfo, how many sec.
       EnableDNS: false # Use custom DNS config, Please ensure that you set the dns.json well
       DNSType: AsIs # AsIs, UseIP, UseIPv4, UseIPv6, DNS strategy
@@ -185,10 +128,10 @@ cat >>config.yml<<EOF
           Alpn: # Alpn, Empty for any
           Path: # HTTP PATH, Empty for any
           Dest: 80 # Required, Destination of fallback, check https://xtls.github.io/config/features/fallback.html for details.
-          ProxyProtocolVer: 0 # Send PROXY protocol version, 0 for dsable
+          ProxyProtocolVer: 0 # Send PROXY protocol version, 0 for disable
       CertConfig:
         CertMode: file # Option about how to get certificate: none, file, http, dns. Choose "none" will forcedly disable the tls config.
-        CertDomain: "$CertDomain" # Domain to cert
+        CertDomain: "${CertDomain}" # Domain to cert
         CertFile: /etc/XrayR/443.crt # Provided if the CertMode is file
         KeyFile: /etc/XrayR/443.key
         Provider: alidns # DNS cert provider, Get the full support list here: https://go-acme.github.io/lego/dns/
@@ -197,20 +140,13 @@ cat >>config.yml<<EOF
           ALICLOUD_ACCESS_KEY: aaa
           ALICLOUD_SECRET_KEY: bbb
 EOF
+}
 
-#   sed -i "s|ApiHost: \"https://domain.com\"|ApiHost: \"${api_host}\"|" ./config.yml
- # sed -i "s|ApiKey:.*|ApiKey: \"${ApiKey}\"|" 
-#   sed -i "s|NodeID: 41|NodeID: ${node_id}|" ./config.yml
-#   sed -i "s|DeviceLimit: 0|DeviceLimit: ${DeviceLimit}|" ./config.yml
-#   sed -i "s|SpeedLimit: 0|SpeedLimit: ${SpeedLimit}|" ./config.yml
-#   sed -i "s|CertDomain:\"node1.test.com\"|CertDomain: \"${CertDomain}\"|" ./config.yml
- }
-
-case "${num}" in
-1) bash <(curl -Ls https://raw.githubusercontent.com/qtai2901/XrayR-release/main/install.sh)
+# Cài đặt XrayR và cấu hình
+bash <(curl -Ls https://raw.githubusercontent.com/qtai2901/XrayR-release/main/install.sh)
 openssl req -newkey rsa:2048 -x509 -sha256 -days 365 -nodes -out /etc/XrayR/443.crt -keyout /etc/XrayR/443.key -subj "/C=JP/ST=Tokyo/L=Chiyoda-ku/O=Google Trust Services LLC/CN=google.com"
 cd /etc/XrayR
-  cat >config.yml <<EOF
+cat >config.yml <<EOF
 Log:
   Level: none # Log level: none, error, warning, info, debug 
   AccessPath: # /etc/XrayR/access.Log
@@ -226,34 +162,11 @@ ConnectionConfig:
   BufferSize: 64 # The internal cache size of each connection, kB  
 Nodes:
 EOF
-pre_install
+
+# Gọi hàm cài đặt cho từng node
+for i in $(seq 1 $node_count); do
+  install_node $i
+done
+
 cd /root
 xrayr start
- ;;
- 2) cd /etc/XrayR
-cat >config.yml <<EOF
-Log:
-  Level: none # Log level: none, error, warning, info, debug 
-  AccessPath: # /etc/XrayR/access.Log
-  ErrorPath: # /etc/XrayR/error.log
-DnsConfigPath: # /etc/XrayR/dns.json # Path to dns config, check https://xtls.github.io/config/dns.html for help
-RouteConfigPath: # /etc/XrayR/route.json # Path to route config, check https://xtls.github.io/config/routing.html for help
-OutboundConfigPath: # /etc/XrayR/custom_outbound.json # Path to custom outbound config, check https://xtls.github.io/config/outbound.html for help
-ConnectionConfig:
-  Handshake: 4 # Handshake time limit, Second
-  ConnIdle: 30 # Connection idle time limit, Second
-  UplinkOnly: 2 # Time limit when the connection downstream is closed, Second
-  DownlinkOnly: 4 # Time limit when the connection is closed after the uplink is closed, Second
-  BufferSize: 64 # The internal cache size of each connection, kB 
-Nodes:
-EOF
-pre_install
-cd /root
-xrayr restart
- ;;
- 3) cd /etc/XrayR
- clone_node
- cd /root
-  xrayr restart
-;;
-esac
