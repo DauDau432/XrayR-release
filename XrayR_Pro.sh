@@ -8,10 +8,10 @@ read -p "  Nhập domain web (không cần https://): " api_host
 [ -z "${api_host}" ] && { echo "  Domain không được để trống."; exit 1; }
 read -p "  Nhập key của web: " api_key
 [ -z "${api_key}" ] && { echo "  Key không được để trống."; exit 1; }
-echo "--------------------------------"
 
 # Hỏi số lượng node
 read -p "  Nhập số lượng node cần cài (1 hoặc 2, mặc định 1): " node_count
+echo "--------------------------------"
 [ -z "${node_count}" ] && node_count="1"
 if [[ "$node_count" != "1" && "$node_count" != "2" ]]; then
   echo "  Số lượng node không hợp lệ, chỉ chấp nhận 1 hoặc 2."
