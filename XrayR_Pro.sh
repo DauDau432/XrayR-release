@@ -26,26 +26,20 @@ declare -A nodes
 
 # Hỏi thông tin cho từng node
 for i in $(seq 1 $node_count); do
-  if [ "$i" == "1" ]; then
-    port="80"
-  else
-    port="443"
-  fi
   echo ""
-  echo "  Node $i (cổng $port)"
   echo "  [1] V2ray"
   echo "  [2] Trojan"
-  read -p "  Chọn loại Node (cổng $port): " NodeType
+  read -p "  Chọn loại Node: " NodeType
   if [ "$NodeType" == "1" ]; then
     NodeType="V2ray"
   elif [ "$NodeType" == "2" ]; then
     NodeType="Trojan"
   else
-    echo "  Loại Node không hợp lệ, mặc định là V2ray."
+    echo "  Loại Node không hợp lệ, mặc định là V2ray"
     NodeType="V2ray"
   fi
 
-  read -p "  Nhập ID Node (cổng $port): " node_id
+  read -p "  Nhập ID Node: " node_id
   [ -z "${node_id}" ] && { echo "  ID Node không được để trống."; exit 1; }
   
   nodes[$i,NodeType]=$NodeType
@@ -62,22 +56,17 @@ echo "  Domain web: https://${api_host}"
 echo "  Key web: ${api_key}"
 echo "  Địa chỉ Node: ${nodes[$i,CertDomain]}"
 for i in $(seq 1 $node_count); do
-  if [ "$i" == "1" ]; then
-    port="80"
-  else
-    port="443"
-  fi
-  echo ""
-  echo "  Node $i (cổng $port)"
-  echo "    Loại Node: ${nodes[$i,NodeType]}"
-  echo "    ID Node: ${nodes[$i,node_id]}"
+  echo "  Loại Node: ${nodes[$i,NodeType]}"
+  echo "  ID Node: ${nodes[$i,node_id]}"
 done
 echo "--------------------------------"
-read -p "  Bạn có muốn tiếp tục cài đặt không? (y/n): " confirm
+read -p "  Bạn có muốn tiếp tục cài đặt không? (y/n, mặc định y): " confirm
+confirm=${confirm:-y}
 if [ "$confirm" != "y" ]; then
   echo "Hủy bỏ cài đặt."
   exit 0
 fi
+
 
 # Hàm cài đặt
 install_node() {
