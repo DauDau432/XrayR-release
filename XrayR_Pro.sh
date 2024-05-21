@@ -50,12 +50,13 @@ done
 # Hiển thị thông tin đã nhập và yêu cầu xác nhận
 clear
 echo ""
-echo " Thông tin cấu hình"
+echo "  Thông tin cấu hình"
 echo "--------------------------------"
 echo "  Domain web: https://${api_host}"
 echo "  Key web: ${api_key}"
 echo "  Địa chỉ Node: ${nodes[$i,CertDomain]}"
 for i in $(seq 1 $node_count); do
+  echo ""
   echo "  Loại Node: ${nodes[$i,NodeType]}"
   echo "  ID Node: ${nodes[$i,node_id]}"
 done
@@ -63,7 +64,7 @@ echo "--------------------------------"
 read -p "  Bạn có muốn tiếp tục cài đặt không? (y/n, mặc định y): " confirm
 confirm=${confirm:-y}
 if [ "$confirm" != "y" ]; then
-  echo "Hủy bỏ cài đặt."
+  echo "  Hủy bỏ cài đặt."
   exit 0
 fi
 
