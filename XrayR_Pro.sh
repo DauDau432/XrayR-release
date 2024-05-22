@@ -67,7 +67,7 @@ echo "  Key web: ${api_key}"
 echo "  Địa chỉ Node: ${nodes[$i,CertDomain]}"
 for i in $(seq 1 $node_count); do
   echo ""
-  echo "  Loại Node: ${nodes[$i,NodeType]}"
+  echo "  Loại Node: ${nodes[$i,NodeName]}"
   echo "  ID Node: ${nodes[$i,node_id]}"
 done
 echo "--------------------------------"
