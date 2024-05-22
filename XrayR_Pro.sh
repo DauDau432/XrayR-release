@@ -36,23 +36,27 @@ for i in $(seq 1 $node_count); do
     NodeName="Vmess"
     EnableVless="false"
   elif [ "$NodeType" == "2" ]; then
-    NodeType="V2ray"
-    NodeName="Vless"
-    EnableVless="true"
+      NodeType="V2ray"
+      NodeName="Vless"
+      EnableVless="true"
   elif [ "$NodeType" == "3" ]; then
-    NodeType="Trojan"
-    NodeName="Trojan"
-    EnableVless="false"
+      NodeType="Trojan"
+      NodeName="Trojan"
+      EnableVless="false"
   else
-    echo "  Loại Node không hợp lệ, mặc định là Vmess"
-    NodeType="V2ray"
-    EnableVless="false"
+      echo "  Loại Node không hợp lệ, mặc định là Vmess"
+      NodeType="V2ray"
+      NodeName="Vmess"
+      EnableVless="false"
   fi
+
+  # Lưu tên loại node vào biến tạm thời
+  tempNodeType=$NodeType
 
   read -p "  Nhập ID Node: " node_id
   [ -z "${node_id}" ] && { echo "  ID Node không được để trống."; exit 1; }
-  
-  nodes[$i,NodeType]=$NodeType
+
+  nodes[$i,NodeType]=$tempNodeType
   nodes[$i,node_id]=$node_id
   nodes[$i,CertDomain]=$vps_ip
 done
@@ -67,7 +71,7 @@ echo "  Key web: ${api_key}"
 echo "  Địa chỉ Node: ${nodes[$i,CertDomain]}"
 for i in $(seq 1 $node_count); do
   echo ""
-  echo "  Loại Node: ${nodes[$i,NodeName]}"
+  echo "  Loại Node: ${nodes[$i,NodeType]}"
   echo "  ID Node: ${nodes[$i,node_id]}"
 done
 echo "--------------------------------"
