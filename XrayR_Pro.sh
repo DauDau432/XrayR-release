@@ -27,16 +27,26 @@ declare -A nodes
 # Hỏi thông tin cho từng node
 for i in $(seq 1 $node_count); do
   echo ""
-  echo "  [1] V2ray"
-  echo "  [2] Trojan"
+  echo "  [1] Vmess"
+  echo "  [2] Vless"
+  echo "  [3] Trojan"
   read -p "  Chọn loại Node: " NodeType
   if [ "$NodeType" == "1" ]; then
     NodeType="V2ray"
+    NodeName="Vmess"
+    EnableVless="false"
   elif [ "$NodeType" == "2" ]; then
-    NodeType="Trojan"
-  else
-    echo "  Loại Node không hợp lệ, mặc định là V2ray"
     NodeType="V2ray"
+    NodeName="Vless"
+    EnableVless="true"
+  elif [ "$NodeType" == "3" ]; then
+    NodeType="Trojan"
+    NodeName="Trojan"
+    EnableVless="false"
+  else
+    echo "  Loại Node không hợp lệ, mặc định là Vmess"
+    NodeType="V2ray"
+    EnableVless="false"
   fi
 
   read -p "  Nhập ID Node: " node_id
@@ -68,13 +78,13 @@ if [ "$confirm" != "y" ]; then
   exit 0
 fi
 
-
 # Hàm cài đặt
 install_node() {
   local i=$1
   local NodeType=${nodes[$i,NodeType]}
   local node_id=${nodes[$i,node_id]}
   local CertDomain=${nodes[$i,CertDomain]}
+  local EnableVless=$2
 
   cat >>/etc/XrayR/config.yml<<EOF
   -
@@ -85,7 +95,7 @@ install_node() {
       NodeID: ${node_id}
       NodeType: ${NodeType} # Node type: V2ray, Shadowsocks, Trojan, Shadowsocks-Plugin
       Timeout: 30 # Timeout for the api request
-      EnableVless: false # Enable Vless for V2ray Type
+      EnableVless: $EnableVless # Enable Vless for V2ray Type
       EnableXTLS: false # Enable XTLS for V2ray and Trojan
       SpeedLimit: 0 # Mbps, Local settings will replace remote settings, 0 means disable
       DeviceLimit: 0 # Local settings will replace remote settings, 0 means disable
@@ -99,7 +109,7 @@ install_node() {
       DisableUploadTraffic: false # Disable Upload Traffic to the panel
       DisableGetRule: false # Disable Get Rule from the panel
       DisableIVCheck: false # Disable the anti-reply protection for Shadowsocks
-      DisableSniffing: True # Disable domain sniffing
+      DisableSniffing: true # Disable domain sniffing
       EnableProxyProtocol: false # Only works for WebSocket and TCP
       AutoSpeedLimitConfig:
         Limit: 0 # Warned speed. Set to 0 to disable AutoSpeedLimit (mbps)
