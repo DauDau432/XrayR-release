@@ -57,6 +57,7 @@ for i in $(seq 1 $node_count); do
   nodes[$i,NodeName]=$NodeName
   nodes[$i,node_id]=$node_id
   nodes[$i,CertDomain]=$vps_ip
+  nodes[$i,EnableVless]=$EnableVless
 done
 
 # Hiển thị thông tin đã nhập và yêu cầu xác nhận
@@ -86,7 +87,7 @@ install_node() {
   local NodeType=${nodes[$i,NodeType]}
   local node_id=${nodes[$i,node_id]}
   local CertDomain=${nodes[$i,CertDomain]}
-  local EnableVless=$2
+  local EnableVless=${nodes[$i,EnableVless]}
 
   cat >>/etc/XrayR/config.yml<<EOF
   -
