@@ -176,4 +176,4 @@ done
 cd /root
 clear
 echo ""
-xrayr start
+xrayr restart
