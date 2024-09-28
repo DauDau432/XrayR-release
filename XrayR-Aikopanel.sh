@@ -1,25 +1,26 @@
 #!/bin/bash
-
+clear
+echo""
 read -p "Nhập Domain Web (không cần https://): " domain_web
 domain_web="https://$domain_web"
 read -p "Nhập API Key (ApiKey): " api_key
 
-read -p "Nhập Node ID - 80 vmess: " node_80
-read -p "Nhập Node ID - 443 trojan: " node_443
-
+read -p "Nhập Node ID 80 vmess: " node_80
+read -p "Nhập Node ID 443 trojan: " node_443
+echo ""
 echo "1. Có"
 echo "2. Không"
 read -p "Bạn muốn cài đặt chứng chỉ SSL không?: " ssl
 
 clear
-
+echo ""
 echo "Thông tin bạn đã nhập:"
 echo "Địa chỉ Web: $domain_web"
 echo "API Key: $api_key"
 echo "Node ID 80 vmess: $node_80"
 echo "Node ID 443 trojan: $node_443"
 echo "Cài đặt chứng chỉ SSL: $( [ "$ssl" -eq 1 ] && echo "Có" || echo "Không" )"
-
+echo ""
 echo "Bạn có muốn tiếp tục cài đặt không?"
 echo "1. Có"
 echo "2. Hủy"
@@ -71,8 +72,11 @@ Nodes:
 EOF
 
     if [ "$ssl" -eq 1 ]; then
+      clear
+        echo ""
         echo "Đang cài đặt chứng chỉ SSL..."
         aiko-server cert
+        Aiko-Server restart
     else
         echo "Bạn đã không cài đặt chứng chỉ SSL"
     fi
